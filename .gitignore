@@ -1,0 +1,20 @@
+*
+!*/
+#  ────────────────────────────────────────────────────────────────────
+!/makedeb/**/PKGBUILD
+!/makedeb/**/*.toml
+!/makedeb/**/*.install
+!/makedeb/Dockerfile
+!/makedeb/Makefile
+!/makedeb/.dockerignore
+#  ────────────────────────────────────────────────────────────────────
+!/makepkg/**/PKGBUILD
+!/makepkg/**/*.toml
+!/makepkg/**/*.install
+!/makepkg/Dockerfile
+!/makepkg/Makefile
+!/makepkg/.dockerignore
+#  ────────────────────────────────────────────────────────────────────
+!.gitignore
+!LICENSE
+!*.md
