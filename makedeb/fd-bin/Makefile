@@ -13,12 +13,13 @@ clean:
 
 srcinfo: ## Generate srcinfo
 	makedeb --printsrcinfo > .SRCINFO
-
+--apt-update:
+	sudo apt-get update
 makedeb: ## Build the package while syncing dependencies
-	makedeb -s
+	makedeb -s --no-confirm
 
 install: ## Installs the package
-	makedeb --install
+	makedeb --install --no-confirm
 commit-prep: clean srcinfo ## prepares the package for commiting. only valid when used in the Docker container
 	find /workspace-git -mindepth 1 -maxdepth 1 -not -path '**/\.git' -delete \
 	&& find /workspace -mindepth 1 -maxdepth 1 -not -path '**/\.git' -exec cp -r {} /workspace-git/ \; 
@@ -29,4 +30,4 @@ commit: commit-prep ## Commits changes to git
 	git -C "/workspace-git" add PKGBUILD Makefile  .SRCINFO .gitignore
 	git -C "/workspace-git" commit -m "feat: Update to ${VERSION}"
 
-build: srcinfo makedeb ## Main target for building a fresh package
+build: --apt-update srcinfo makedeb ## Main target for building a fresh package
