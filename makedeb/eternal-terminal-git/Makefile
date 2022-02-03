@@ -27,7 +27,7 @@ commit-prep: clean srcinfo ## prepares the package for commiting. only valid whe
 	&& find /workspace -mindepth 1 -maxdepth 1 -not -path '**/\.git' -exec cp -r {} /workspace-git/ \; 
 commit: VERSION = $(shell grep pkgver .SRCINFO | cut -d '=' -f 2 | tr -d '[:space:]')
 commit: commit-prep ## Commits changes to git
-	git -C "/workspace-git" add PKGBUILD Makefile  .SRCINFO .gitignore
+	git -C "/workspace-git" add PKGBUILD Makefile *.install .SRCINFO .gitignore
 	git -C "/workspace-git" commit -m "feat: Update to ${VERSION}"
 
 
